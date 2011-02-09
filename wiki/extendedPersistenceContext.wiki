@@ -1,0 +1,8 @@
+#summary conversazioni con EM extended
+
+http://seamframework.org/Community/EXTENDEDPersistenceContextProduces
+
+http://azajava.blogspot.com/2009/09/introduction-i-decided-to-share-special.html
+
+
+http://thatjavathing.blogspot.com/2009/04/extended-persistence-context.html
