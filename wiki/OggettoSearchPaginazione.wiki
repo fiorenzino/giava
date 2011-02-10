@@ -1,15 +1,15 @@
 #summary Oggetto Search e Paginazione.
 #labels Search,AbstractController,Paginazione
 
-= Introduction =
+= Introduzione =
+
+Oggetto Search e Paginzione.
+
+= Dettagli =
+
 
 Perchè le informazioni sulla paginazione si trovano all'interno dell'AbstactController
-e non nell'oggetto page.
-
-
-= Details =
-
-earch:
+e non nell'oggetto Search.
 
 Perchè i campi di AbstractController:
 
