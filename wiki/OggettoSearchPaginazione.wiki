@@ -1,0 +1,21 @@
+#summary Oggetto Search e Paginazione.
+#labels Search,AbstractController,Paginazione
+
+= Introduction =
+
+Perchè le informazioni sulla paginazione si trovano all'interno dell'AbstactController
+e non nell'oggetto page.
+
+
+= Details =
+
+earch:
+
+Perchè i campi di AbstractController:
+
+private int rowCount;
+private int pageSize = PAGE_SIZE;
+private int rowsPerPage = ROWS_PER_PAGE;
+private int scrollerPage = SCROLLER_PAGE;
+
+Non stanno tutti nella classe Search, visto che sono tutte informazioni per la costruzione delle query?
