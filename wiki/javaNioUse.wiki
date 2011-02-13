@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary How to read a bin file to a byte array?
 
 = Introduction = How to read a bin file to a byte array?
 
