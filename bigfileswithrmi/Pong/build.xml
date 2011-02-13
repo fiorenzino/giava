@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<project name="Pong" default="ear_dir" basedir=".">
+
+	<property file="${basedir}/build.properties" />
+
+	<!-- set global properties for this build -->
+	<!--<property name="project.name" value="MailWSClient"/>-->
+	<property name="dist.dir" value="dist" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="deploy.dir" value="${jboss.home}/server/default/deploy" />
+	<property name="jar.dir" value="exploded-archives/${project.name}.jar" />
+	<property name="bin.dir" value="bin" />
+	<property name="javac.debug" value="true" />
+	<property name="javac.deprecation" value="false" />
+	<property name="debug" value="false" />
+	<property name="build-tests.dir" value="${basedir}/tests/build" />
+	<property name="src-test.dir" value="src-test" />
+	<property name="build.reports" value="${basedir}/tests/reports" />
+
+	<fileset id="lib" dir="${lib.dir}">
+		<include name="*.jar" />
+	</fileset>
+
+	<path id="build.classpath">
+		<fileset dir="lib" includes="**/*.jar" />
+		<fileset dir="${jboss.home}/client" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/lib" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/deploy/ejb3.deployer" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/deploy/jboss-web.deployer/jsf-libs" includes="*.jar" />
+	</path>
+
+	<path id="junit.classpath">
+		<fileset dir="lib" includes="junit*.jar" />
+		<fileset dir="lib" includes="mysql*.jar" />
+		<fileset dir="lib" includes="commons*.jar" />
+		<fileset dir="lib" includes="PDF*.jar" />
+		<fileset dir="${jboss.home}/client" includes="*.jar" />
+		<fileset dir="${jboss.home}/lib" includes="*.jar" />
+		<fileset dir="${jboss.home}/lib/endorsed" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/lib" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/deploy/ejb3.deployer" includes="*.jar" />
+		<fileset dir="${jboss.home}/server/${jboss.server}/deploy/jboss-web.deployer/jsf-libs" includes="*.jar" />
+		<pathelement location="${jar.dir}" />
+		<pathelement location="${src.dir}" />
+		<pathelement location="${build-tests.dir}" />
+	</path>
+
+	<target name="init" description="Initialize the build">
+		<mkdir dir="${jar.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+
+	<target name="archive" depends="clean, init, compile" description="Package the archives">
+		<jar jarfile="${dist.dir}/${project.name}.jar" basedir="${jar.dir}">
+		</jar>
+	</target>
+
+	<target name="ear" depends="archive">
+		<ear destfile="${dist.dir}/${project.name}.ear" appxml="dd/ear/application.xml">
+			<fileset dir="${dist.dir}" includes="*.jar, *.sar, *.war" />
+		</ear>
+	</target>
+
+	<target name="ear_dir" depends="ear">
+		<rename dest="${dist.dir}/${project.name}.ear.zip" src="${dist.dir}/${project.name}.ear" />
+		<unjar src="${dist.dir}/${project.name}.ear.zip" dest="${dist.dir}/${project.name}.ear">
+		</unjar>
+		<delete file="${dist.dir}/${project.name}.ear.zip">
+		</delete>
+	</target>
+
+	<target name="compile" depends="init" description="Compile the Java source code" unless="eclipse.running">
+
+		<javac classpathref="build.classpath" destdir="${jar.dir}" debug="${javac.debug}" deprecation="${javac.deprecation}" nowarn="on">
+			<src path="${src.dir}" />
+		</javac>
+
+	</target>
+
+
+	<target name="create-library" depends="clean, init, compile" description="Package the archives">
+		<jar jarfile="${dist.dir}/${project.name}Lib.jar">
+			<fileset dir="${jar.dir}">
+				<include name="**/PongSession.class" />
+			</fileset>
+		</jar>
+	</target>
+
+
+	<pathconvert property="class-path" dirsep="/" pathsep=" " refid="build.classpath">
+		<map from="${basedir}/lib" to="./lib" />
+	</pathconvert>
+
+	<target name="clean" description="Cleans up the build directory">
+		<delete dir="${dist.dir}" />
+		<delete dir="${jar.dir}" />
+	</target>
+
+
+
+</project>
