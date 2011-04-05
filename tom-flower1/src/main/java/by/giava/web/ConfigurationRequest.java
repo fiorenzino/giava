@@ -1,0 +1,38 @@
+package by.giava.web;
+
+import java.io.Serializable;
+
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import by.giava.model.Configuration;
+import by.giava.repository.ConfigurationSession;
+
+@Named
+@ConversationScoped
+public class ConfigurationRequest implements Serializable {
+
+	private Configuration configuration;
+
+	public ConfigurationRequest() {
+		System.out.println("configurationRequest start");
+	}
+
+	@Inject
+	ConfigurationSession configurationSession;
+
+	public void readConfiguration() {
+		this.configuration = configurationSession.readConfiguration();
+	}
+
+	public Configuration getConfiguration() {
+		if (this.configuration == null)
+			readConfiguration();
+		return configuration;
+	}
+
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
+	}
+}
