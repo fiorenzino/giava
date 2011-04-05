@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml">
+
+	<ui:define name="title">Sample Configuration</ui:define>
+	<ui:define name="head">Sample Configuration</ui:define>
+	<ui:define name="content">
+		<p>
+			<h:outputLabel for="configurationId" value="configuration id:" />
+			<h:outputText id="configurationId"
+				value="#{configurationRequest.configuration.id}" />
+
+			<h:outputLabel for="smtp" value="configuration smtp:" />
+			<h:outputText id="smtp"
+				value="#{configurationRequest.configuration.smtp}" />
+
+			<h:outputLabel for="username" value="configuration username:" />
+			<h:outputText id="username"
+				value="#{configurationRequest.configuration.username}" />
+		</p>
+	</ui:define>
+
+</ui:composition>
+
