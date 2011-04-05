@@ -32,13 +32,13 @@
 	</target>
 
 	<target name="package">
-		<exec dir="${basedir}" executable="/usr/maven/apache-maven-3.0/bin/mvn">
+		<exec dir="${basedir}" executable="${mvn.command}">
 			<arg line="-o -Dmaven.skip.test=true package" />
 		</exec>
 	</target>
 
 	<target name="clean">
-		<exec dir="${basedir}" executable="/usr/maven/apache-maven-3.0/bin/mvn">
+		<exec dir="${basedir}" executable="${mvn.command}">
 			<arg line="-o -Dmaven.skip.test=true clean" />
 		</exec>
 	</target>
