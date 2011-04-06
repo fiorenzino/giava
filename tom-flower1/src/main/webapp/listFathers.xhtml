@@ -23,10 +23,14 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">action</f:facet>
-						<h:commandLink action="#{fatherConversation.viewFather}"
-							value="view" />
+						<h:commandLink action="#{fatherConversation.view}" value="view" /> - <h:commandLink
+							action="#{fatherConversation.modify}" value="mod" />
 					</h:column>
 				</h:dataTable>
+
+				<br />
+				<h:commandButton value="add father"
+					action="#{fatherConversation.add}" />
 
 
 			</p>
