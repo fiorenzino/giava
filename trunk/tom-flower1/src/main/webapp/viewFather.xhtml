@@ -8,28 +8,37 @@
 	<ui:define name="title">Father view</ui:define>
 	<ui:define name="head">Father view</ui:define>
 	<ui:define name="content">
-		<p>
-			<h:outputLabel for="id" value="id:" />
-			<h:outputText id="id" value="#{fatherConversation.father.id}" />
-			<br />
-			<h:outputLabel for="name" value="name" />
-			<h:outputText id="name" value="#{fatherConversation.father.name}" />
-			<br />
-			<h:outputLabel for="surname" value="surname:" />
-			<h:outputText id="surname"
-				value="#{fatherConversation.father.surname}" />
-			<br />
-			<h:dataTable value="#{fatherConversation.father.sons}" var="son">
-				<h:column>
-					<f:facet name="header">surname</f:facet>
-					<h:outputText value="#{son.surname}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">name</f:facet>
-					<h:outputText value="#{son.name}" />
-				</h:column>
-			</h:dataTable>
-		</p>
+		<h:form>
+			<p>
+				<h:outputLabel for="id" value="id:" />
+				<h:outputText id="id" value="#{fatherConversation.father.id}" />
+				<br />
+				<h:outputLabel for="name" value="name" />
+				<h:outputText id="name" value="#{fatherConversation.father.name}" />
+				<br />
+				<h:outputLabel for="surname" value="surname:" />
+				<h:outputText id="surname"
+					value="#{fatherConversation.father.surname}" />
+				<br />
+				<h:dataTable value="#{fatherConversation.father.sons}" var="son">
+					<h:column>
+						<f:facet name="header">surname</f:facet>
+						<h:outputText value="#{son.surname}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">name</f:facet>
+						<h:outputText value="#{son.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">action</f:facet>
+						<h:commandLink action="#{sonConversation.modify(son.id)}"
+							value="mod" />
+					</h:column>
+				</h:dataTable>
+				<br />
+				<h:commandButton value="add son" action="#{sonConversation.add}" />
+			</p>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
