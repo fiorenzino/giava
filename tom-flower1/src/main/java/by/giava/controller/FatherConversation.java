@@ -10,9 +10,7 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import by.giava.model.Configuration;
 import by.giava.model.Father;
-import by.giava.repository.ConfigurationSession;
 import by.giava.repository.FatherRepository;
 
 @Named
@@ -21,6 +19,7 @@ public class FatherConversation implements Serializable {
 
 	private static final String VIEW = "/viewFather.xhtml";
 	public static final String LIST = "/listFathers.xhtml";
+	private static final String MOD = "/addModFather.xhtml";
 
 	@Inject
 	private Conversation conversation;
@@ -67,8 +66,37 @@ public class FatherConversation implements Serializable {
 		this.model = model;
 	}
 
-	public String viewFather() {
+	public String view() {
 		this.father = getModel().getRowData();
 		return VIEW;
 	}
+
+	public String modify() {
+		this.father = getModel().getRowData();
+		return MOD;
+	}
+
+	public String add() {
+		this.father = new Father();
+		return MOD;
+	}
+
+	public String save() {
+		fatherRepository.save(father);
+		this.model = null;
+		return LIST;
+	}
+
+	public String update() {
+		fatherRepository.merge(father);
+		this.model = null;
+		return LIST;
+	}
+
+	public String delete() {
+		fatherRepository.delete(father);
+		this.model = null;
+		return LIST;
+	}
+
 }
