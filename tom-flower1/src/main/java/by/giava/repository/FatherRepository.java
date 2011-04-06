@@ -1,6 +1,7 @@
 package by.giava.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -11,50 +12,51 @@ import org.jboss.seam.transaction.TransactionPropagation;
 import org.jboss.seam.transaction.Transactional;
 
 import by.giava.model.Configuration;
+import by.giava.model.Father;
 
 @Named
 @ConversationScoped
-public class ConfigurationSession implements Serializable {
+public class FatherRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	EntityManager em;
 
-	public ConfigurationSession() {
-		System.out.println("start configurationSession");
+	public FatherRepository() {
+		System.out.println("start FatherRepository");
 	}
 
 	@Transactional(TransactionPropagation.REQUIRED)
-	public Configuration readConfiguration() {
-		Configuration c = null;
+	public Father find(Long id) {
 		try {
-			c = getEm().find(Configuration.class, 1L);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (c == null) {
-			c = new Configuration();
-			getEm().persist(c);
-		}
-		return c;
-	}
-
-	@Transactional(TransactionPropagation.REQUIRED)
-	public Configuration merge(Configuration configuration) {
-		try {
-			return em.merge(configuration);
+			return em.find(Father.class, 1L);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public EntityManager getEm() {
-		return em;
+	@Transactional(TransactionPropagation.REQUIRED)
+	public Father merge(Father father) {
+		try {
+			return em.merge(father);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	public void setEm(EntityManager em) {
-		this.em = em;
+	@Transactional(TransactionPropagation.REQUIRED)
+	public List<Father> getList() {
+		try {
+			return em
+					.createQuery("select c from Father c order by surname asc")
+					.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
+
 }

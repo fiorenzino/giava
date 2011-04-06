@@ -2,6 +2,7 @@ package by.giava.web;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +15,9 @@ import by.giava.repository.ConfigurationSession;
 public class ConfigurationRequest implements Serializable {
 
 	private Configuration configuration;
+
+	@Inject
+	private Conversation conversation;
 
 	public ConfigurationRequest() {
 		System.out.println("configurationRequest start");
@@ -34,5 +38,15 @@ public class ConfigurationRequest implements Serializable {
 
 	public void setConfiguration(Configuration configuration) {
 		this.configuration = configuration;
+	}
+
+	public String startConversation() {
+		conversation.begin();
+		return "";
+	}
+
+	public String stopConversation() {
+		conversation.end();
+		return "";
 	}
 }
