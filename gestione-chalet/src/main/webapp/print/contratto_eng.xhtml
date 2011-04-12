@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/print_layout.xhtml">
+	<ui:define name="title">Lease agreement</ui:define>
+	<ui:define name="content">
+
+		<div
+			style="width: 650px; text-align: justify; border: #000 solid 0px;">
+
+
+		<p></p>
+		<p></p>
+		<p>Between the firm <b>Simonelli Moto s.a.s.</b> (hereafter called
+		Lessor) and Mr/Ms <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+		(hereafter called Lessee), born on the <b><h:outputText
+			value="#{clientiController.cliente.dataNascita}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b> in <b>#{contrattiController.contratto.cliente.cityNascitaName}
+		(#{contrattiController.contratto.cliente.provinciaNascitaName})</b>, residing
+		in <b>#{contrattiController.contratto.cliente.indirizzo}</b>,
+		#{contrattiController.contratto.cliente.cap}
+		#{contrattiController.contratto.cliente.cityName}
+		(#{contrattiController.contratto.cliente.provinciaName}), VAT <b>#{contrattiController.contratto.cliente.codicefiscale}</b>,
+		driving licence n. <b>#{contrattiController.contratto.cliente.patente}</b>
+		issued by #{contrattiController.contratto.cliente.rilasciataDa} on the
+		#{contrattiController.contratto.cliente.luogoRilascio} in date <h:outputText
+			value=" " /><h:outputText
+			value="#{contrattiController.contratto.cliente.dataRilasco}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText>, phone n.: #{contrattiController.contratto.cliente.telefono}, mobile
+		phone n.: #{contrattiController.contratto.cliente.cellulare},</p>
+		<p></p>
+		<p><b>the following was accepted and agreed upon:</b></p>
+		<ul>
+			<li>the Lessor shall grant by lease to Mr/Ms <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+			the scooter <b>#{contrattiController.contratto.scooter.marcaModello}</b>
+			with licence plate n. <b>#{contrattiController.contratto.scooter.targa}</b>
+			belonging to the Lessor;
+			<p></p>
+			</li>
+			<li>the Lessee shall hire said scooter from: <b><h:outputText
+				value=" " /><h:outputText
+				value="#{contrattiController.contratto.dataInit}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, until: <b><h:outputText value=" " /><h:outputText
+				value="#{contrattiController.contratto.dataEnd}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, having accepted all the provisions contained herein, and having
+			expressly declared he/she will return the scooter in an excellent
+			state of usage and maintenance , regarding both its mechanics and
+			chassis, and in perfect working order . The Lessee undertakes to use
+			the scooter appropriately and in accordance with the limits specified
+			herein and to return the scooter when the term runs out;
+			<p></p>
+			</li>
+			<li>the scooter shall be returned to the Lessor on the date of
+			expiry expressed herein in the same state it was in when granted by
+			lease to the Lessee;
+			<p></p>
+			</li>
+			<li>the scooter shall be returned by the <b><h:outputText
+				value=" " /> <h:outputText
+				value="#{contrattiController.contratto.dataEnd}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, to the Lessor with a full tank or the same amount of fuel it had
+			when the lease started. In the contrary case, the Lessee shall pay an
+			additional charge of 10 Euros;
+			<p></p>
+			</li>
+			<li>regarding the redelivery of the scooter, a maximum of 59
+			minutes’ grace shall be allowed. Any further delay shall be charged
+			as an extra lease day; every further day of delay shall be charged
+			30% more than the stipulated price charged per day;
+			<p></p>
+			</li>
+			<li>the Lessee shall pay #{contrattiController.contratto.totale}
+			euros, as payment for the sum owed:
+			<table>
+				<tr>
+					<td style="width: 50px;"></td>
+					<td>Initial sum:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoIniziale}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Possible discount:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.sconto}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Second helmet:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.cascoExtra}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Sotto Casco:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoSottoCasco}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Deposit:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoCaparra}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Total:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.totale}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+			</table>
+			<p></p>
+			</li>
+			<li>price and terms of this lease:
+			<table>
+				<tr>
+					<td style="width: 50px;"></td>
+					<td>1 day:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d1}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>2 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d2}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>3 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d3}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>4 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d4}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>5 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d5}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>7 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d7}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>30 days:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d30}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>1 extra day:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d1ex}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>mileage allowance per day:</td>
+					<td>#{contrattiController.contratto.scooter.tariffa.maxKm}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>cost for extra km:</td>
+					<td><h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.costoKm}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText> Euros</td>
+				</tr>
+			</table>
+
+			<p></p>
+			</li>
+			<li>the vehicle may not be subleased;
+			<p></p>
+			</li>
+			<li>the Lessor may check the scooter when deemed necessary;
+			<p></p>
+			</li>
+			<li>the Lessee declares he/she is qualified to drive the
+			scooter, on the basis of the valid driving licence n.
+			#{contrattiController.contratto.cliente.patente} which was shown when
+			this agreement was stipulated. Furthermore the Lessee declares he/she
+			is not restricted by law or by administrative and/or judicial
+			authorities;
+			<p></p>
+			</li>
+			<li>the lessee undertakes to pay any fines, or administrative
+			penalties incurred during circulation on the scooter chargeable to
+			him/her;
+			<p></p>
+			</li>
+			<li>for any other matters not contained herein, the parties
+			shall refer to article 1571 and subsequent articles in the Italian
+			civil code;
+			<p></p>
+			</li>
+			<li>Any controversies arising between the parties hereto shall
+			be referred exclusively to the competent court of Ascoli Piceno,
+			branch office of San Benedetto del Tronto.
+			<p></p>
+			</li>
+		</ul>
+		<p></p>
+		<!--   
+<div style="page-break-after: always"></div> 
+-->
+		<p></p>
+		<p style="text-align: right;"><b><h:outputText
+			value="San Benedetto del Tronto, li  " /><h:outputText
+			value="#{contrattiController.contratto.dataStipula}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" style="width: 650px;">
+			<h:panelGroup style="width: 325px; text-align: left;">
+			the Lessor <b>Simonelli Moto s.a.s.</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+			<h:panelGroup style="width: 325px; text-align: right;">
+			the  Lessee <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+		</h:panelGrid>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p><b>With the express acceptance of the clauses 1, 2, 3, 4,
+		5, 6, 7, 8, 9, 10, 11, 12, 13 </b></p>
+		<p></p>
+		<p style="text-align: right;"><b><h:outputText
+			value="San Benedetto del Tronto, li  " /><h:outputText
+			value="#{contrattiController.contratto.dataStipula}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" style="width: 650px;">
+			<h:panelGroup style="width: 325px; text-align: left;">
+			the Lessor <b>Simonelli Moto s.a.s.</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+			<h:panelGroup style="width: 325px; text-align: right;">
+			the  Lessee <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+		</h:panelGrid></div>
+	</ui:define>
+</ui:composition>
+</html>

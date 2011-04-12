@@ -1,0 +1,20 @@
+<?xml version="1.0"?>  
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"  
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   
+               http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"  
+               version="2.0">  
+	
+	<application>
+		<navigation-handler>by.giava.gestionechalet.controllers.utils.NavigationHandler</navigation-handler>
+	</application>
+	<converter>
+		<converter-for-class>java.util.Date</converter-for-class>
+		<converter-class>by.giava.gestionechalet.controllers.utils.CustomDateTimeConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>CustomFloatConverter</converter-id>
+		<converter-class>by.giava.gestionechalet.controllers.utils.CustomFloatConverter</converter-class>
+	</converter>
+
+</faces-config>

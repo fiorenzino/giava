@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Gestione Scooter</ui:define>
+	<ui:define name="content">
+		<h2>Gestione Scooter</h2>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<rich:messages />
+				<h:panelGrid columns="2" id="editContent">
+					<a:field id="nome" label="Nome:" fieldName="nome"
+						entity="#{scootersController.scooter}" required="false" />
+
+					<a:field id="Marca" label="Marca(*):" fieldName="marca"
+						entity="#{scootersController.scooter}" required="true" />
+
+					<a:field id="modello" label="Modello(*):" fieldName="modello"
+						entity="#{scootersController.scooter}" required="true" />
+
+					<a:field id="cilindrata" label="Cilindrata(*):"
+						fieldName="cilindrata" entity="#{scootersController.scooter}"
+						required="true" />
+
+					<a:field id="targa" label="Targa(*):" fieldName="targa"
+						entity="#{scootersController.scooter}" required="true" />
+
+					<a:field id="caparra" label="Caparra(*):" fieldName="caparra"
+						entity="#{scootersController.scooter}" required="false" />
+
+					<a:field label="Tariffa(*):" fieldName="id" id="idTar"
+						entityId="#{scootersController.scooter.tariffa}" type="selOneM_items"
+						fieldNameList="#{tariffeController.tariffeList}" />
+
+
+					<a:field id="scadenzaAss" label="Scadenza Assicurazione(*):"
+						fieldName="scadenzaAssicurazione"
+						entity="#{scootersController.scooter}" required="false"
+						type="calendar" />
+
+					<a:field id="kmFatti" label="km Fatti:" fieldName="kmFatti"
+						entity="#{scootersController.scooter}" required="false" />
+				</h:panelGrid>
+			</rich:panel>
+			<div height="30" />
+			<div><h:commandButton id="submitAdd"
+				action="#{scootersController.addScooter2}" value="Crea Nuovo Scooter"
+				rendered="#{not scootersController.editMode}" /> <h:commandButton
+				id="submitUpdate" action="#{scootersController.modScooter2}"
+				value="Salva Modifiche" rendered="#{scootersController.editMode}" /> <h:commandButton
+				id="delUpdate" action="#{scootersController.delScooter}"
+				value="Elimina" rendered="#{scootersController.editMode}" /></div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

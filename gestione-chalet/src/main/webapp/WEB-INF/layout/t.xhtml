@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title><ui:insert name="title" />
+	</title>
+	<link href="style/bugsstyles.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<h:body>
+	<div id="wrap">
+		<div id="header"></div>
+		<div id="navbar">
+			<a href="calendario.jsf">Home</a> <a href="clienti/">Clienti</a> <a
+				href="scooters">Scooter</a> <a href="colonne.jsf">Contratti</a> <a
+				href="#">Calendario</a>
+		</div>
+		<div id="contentarea">
+			<div id="contentright">
+				<ui:insert name="sidebar">
+					<div align="center">
+						<p>
+							<strong>Mini Links</strong>
+						</p>
+						<a href="#">Link Here</a><br /> <br /> <a href="#">Link Here</a><br />
+						<br /> <a href="#">Link Here</a><br /> <br /> <a href="#">Link
+							Here</a><br /> <br />
+					</div>
+				</ui:insert>
+			</div>
+			<ui:insert name="content">
+				<ui:include src="content.xhtml" />
+			</ui:insert>
+			<div id="footer">
+				<p>
+					Design By <a href="http://www.simonmarlow.info">SDM</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Gestione Tariffa</ui:define>
+	<ui:define name="content">
+		<h2>Gestione Tariffa</h2>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<rich:messages />
+				<h:panelGrid columns="2" id="editContent">
+					<a:field id="Nome" label="Nome(*):" fieldName="nome"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d1" label="Costo 1gg(*):" fieldName="d1"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d2" label="Costo 2gg(*):" fieldName="d2"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d3" label="Costo 3gg(*):" fieldName="d3"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d4" label="Costo 4gg(*):" fieldName="d4"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d5" label="Costo 5gg(*):" fieldName="d5"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d7" label="Costo 7gg(*):" fieldName="d7"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="d30" label="Costo 30gg(*):" fieldName="d30"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+
+					<a:field id="dd1ex" label="Costo 1exgg(*):" fieldName="d1ex"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="maxKm" label="Num. max Km(*):" fieldName="maxKm"
+						entity="#{tariffeController.tariffa}" required="true" />
+
+					<a:field id="costoKm" label="Costo Km extra(*):"
+						fieldName="costoKm" entity="#{tariffeController.tariffa}"
+						required="true" />
+				</h:panelGrid>
+
+			</rich:panel>
+			<div height="30" />
+			<div><h:commandButton id="submitAdd"
+				action="#{tariffeController.addTariffa2}" value="Crea Nuova Tariffa"
+				rendered="#{not tariffeController.editMode}" /> <h:commandButton
+				id="submitUpdate" action="#{tariffeController.modTariffa2}"
+				value="Salva Modifiche" rendered="#{tariffeController.editMode}" /> <h:commandButton
+				id="delUpdate" action="#{tariffeController.delTariffa}" value="Elimina"
+				rendered="#{tariffeController.editMode}" /></div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

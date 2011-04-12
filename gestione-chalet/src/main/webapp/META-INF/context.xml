@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Manager pathname="" /> <!-- disables storage of sessions across restarts -->
+	<Resource name="BeanManager" auth="Container"
+		type="javax.enterprise.inject.spi.BeanManager" factory="org.jboss.weld.resources.ManagerObjectFactory" />
+
+	<Resource name="jdbc/scooter" auth="Container" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/rentScooter"
+		username="scooter" password="scooter" maxActive="20" maxIdle="10"
+		maxWait="-1" />
+</Context>

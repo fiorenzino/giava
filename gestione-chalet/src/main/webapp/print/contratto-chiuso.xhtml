@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/print_layout.xhtml">
+	<ui:define name="title">Scheda Contratto Chiuso</ui:define>
+	<ui:define name="content">
+
+		<div
+			style="width: 650px; text-align: justify; border: #000 solid 0px;">
+
+
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" id="editContent" columnClasses="80,100">
+
+			<a:fieldView id="aperto" label="Contratto Aperto?:"
+				fieldName="aperto" entity="#{contrattiController.contratto}"
+				type="boolean" />
+
+			<a:fieldView id="Cliente" label="Cliente:"
+				entity="#{contrattiController.contratto.cliente}"
+				fieldName="nomeCognome" />
+
+			<a:fieldView id="scooter" label="Scooter:"
+				entity="#{contrattiController.contratto.scooter}"
+				fieldName="marcaModello" />
+
+			<a:fieldView id="dataInit" label="Data Inizio:" fieldName="dataInit"
+				type="outputDate" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="dataEnd" label="Data Riconsegna Prevista:"
+				fieldName="dataEnd" type="outputDate"
+				entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="dataEff" label="Data Riconsegna Effettuata:"
+				fieldName="dataRiconsegna" type="outputDate"
+				entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="note" label="Note:" fieldName="note"
+				entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="numDays" label="Numero di giorni:"
+				fieldName="numDays" entity="#{contrattiController}" />
+
+			<a:fieldView id="importoIniziale" label="Importo Iniziale:"
+				fieldName="importoIniziale" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="sconto" label="Sconto su Importo Iniziale:"
+				fieldName="sconto" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="cascoExtra" label="Secondo Casco:"
+				fieldName="cascoExtra" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="importoSottoCasco" label="Sotto Casco:"
+				fieldName="importoSottoCasco" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="importoCaparra" label="Importo Caparra:"
+				fieldName="importoCaparra" entity="#{contrattiController.contratto}" />
+
+			<a:fieldView id="totale" label="Somma Versata Inizialmente:"
+				fieldName="totaleParziale" entity="#{contrattiController.contratto}" />
+
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="numDaysExtra" label="Numero giorni extra:"
+				fieldName="numDaysExtra" entity="#{contrattiController}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="costoDayEx2" label="Costo Giorno Extra"
+				fieldName="d1ex"
+				entity="#{contrattiController.contratto.scooter.tariffa}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="extra" label="Importo Per Giorni Extra:"
+				fieldName="extra" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="kmMax2" label="KM Max al GG" fieldName="maxKm"
+				entity="#{contrattiController.contratto.scooter.tariffa}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="kmMaxTot" label="KM Max TOT" fieldName="kmMaxTot"
+				entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="costoKm2" label="Costo Km Extra" fieldName="costoKm"
+				entity="#{contrattiController.contratto.scooter.tariffa}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="kmIniziali2" label="KM Iniziali:"
+				fieldName="kmIniziali" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="kmFinali2" label="KM Finali:" fieldName="kmFinali"
+				entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="kmExtraV2" label="Numero KM Extra:"
+				fieldName="kmExtra" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="importokmExtraV2" label="Importo KM Extra(*):"
+				fieldName="importokmExtra" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+
+			<a:fieldView id="importoRitiroMezzoV" label="Importo Ritiro Mezzo:"
+				fieldName="importoRitiroMezzo"
+				entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="importoDanniV" label="Importo Danni:"
+				fieldName="importoDanni" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="benzinaExtraV" label="Importo Benzina Extra:"
+				fieldName="benzinaExtra" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="totaleSomma" label="Somma Totale:"
+				fieldName="totale" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+			<h:outputText value="-------------"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+			<a:fieldView id="totaleChiusura"
+				label="Totale dovuto per Chiusura Contratto:"
+				fieldName="totaleChiusura" entity="#{contrattiController.contratto}"
+				rendered="#{not contrattiController.contratto.aperto}" />
+
+
+		</h:panelGrid></div>
+	</ui:define>
+</ui:composition>
+</html>

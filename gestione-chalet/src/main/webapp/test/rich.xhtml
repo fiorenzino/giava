@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<f:view>
+	<h:head>
+	</h:head>
+	<h:body>
+		<a4j:status startText="start..." />
+		<br />
+		<h:form>
+			<p:panel header="F.C. Barcelona" footer="Visca el Barca!">
+				<rich:dataTable id="list" rows="#{contrattiController.rowsPerPage}"
+					columnClasses="col" value="#{contrattiController.model}"
+					var="contratto">
+					<f:facet name="header">
+						<h:outputText value="Lista Clienti" />
+					</f:facet>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="cliente" />
+						</f:facet>
+						<h:outputText value="#{contratto.cliente.nomeCognome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="scooter" />
+						</f:facet>
+						<h:outputText value="#{contratto.scooter.marcaModello}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data Inizio" />
+						</f:facet>
+						<h:outputText value="#{contratto.dataInit}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data Prevista" />
+						</f:facet>
+						<h:outputText value="#{contratto.dataEnd}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data Riconsegna" />
+						</f:facet>
+						<p:calendar locale="it" value="#{contratto.dataRiconsegna}"
+							showOn="button" />
+						<br />
+						<h:outputText value="#{contratto.dataRiconsegna}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Aperto" />
+						</f:facet>
+						<h:commandLink action="#{contrattiController.detailContratto}"
+							id="vedi" value="Vedi" />
+					</h:column>
+				</rich:dataTable>
+				<rich:dataScroller for="list" maxPages="10" />
+			</p:panel>
+			<div style="height: 30px; clear: both;" />
+			<rich:panel header="F.C. Barcelona" footer="Visca el Barca!">
+				<p:dataTable id="list2" var="contratto"
+					value="#{contrattiController.model}" paginator="true"
+					rows="#{contrattiController.rowsPerPage}">
+					<f:facet name="header">
+						<h:outputText value="Lista Clienti" />
+					</f:facet>
+
+					<f:facet name="header">
+						<h:outputText value="Lista Clienti" />
+					</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="cliente" />
+						</f:facet>
+						<h:outputText value="#{contratto.cliente.nomeCognome}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="scooter" />
+						</f:facet>
+						<h:outputText value="#{contratto.scooter.marcaModello}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Data Inizio" />
+						</f:facet>
+						<h:outputText value="#{contratto.dataInit}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Data Prevista" />
+						</f:facet>
+						<h:outputText value="#{contratto.dataEnd}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Data Riconsegna" />
+						</f:facet>
+						<p:calendar locale="it" value="#{contratto.dataRiconsegna}"
+							showOn="button" />
+						<br />
+						<h:outputText value="#{contratto.dataRiconsegna}">
+							<f:convertDateTime type="both" dateStyle="short" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Aperto" />
+						</f:facet>
+						<h:commandLink action="#{contrattiController.detailContratto}"
+							id="vedi" value="Vedi" />
+					</p:column>
+				</p:dataTable>
+
+			</rich:panel>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

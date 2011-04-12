@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Lista Tariffe</ui:define>
+	<ui:define name="content">
+		<h2>Lista Tariffe</h2>
+		<h:form id="centerForm">
+
+			<h:panelGrid columns="4" width="70%">
+				<f:facet name="header">
+					<h:outputText value="Cerca Tariffa" />
+				</f:facet>
+				<h:panelGroup>
+					<h:outputLabel id="nomeLabel" value="Nome:" for="nome" />
+					<h:inputText id="nome" value="#{tariffeController.ricerca.nome}"
+						size="15">
+						<a4j:ajax event="change" 
+							render="list,scollerList" action="#{tariffeController.aggModel}" />
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputLabel value="Num. Righe:" for="numRighe" />
+					<h:selectOneMenu id="numRighe"
+						value="#{tariffeController.rowsPerPage}">
+						<f:selectItems value="#{propertiesHandler.rowItems}" />
+						<a4j:ajax event="change" render="list,scollerList" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+				<f:facet name="footer">
+					<h:outputText value="La tabella sotto si aggiorna automaticamente." />
+				</f:facet>
+			</h:panelGrid>
+			<rich:dataTable id="list" rows="#{tariffeController.rowsPerPage}"
+				columnClasses="col" value="#{tariffeController.model}" var="Tariffa">
+				<f:facet name="header">
+					<h:outputText value="Lista Tariffa" />
+				</f:facet>
+
+				<a:column entity="${Tariffa}" fieldName="nome" sort="${false}"
+					label="nome" />
+
+				<a:column entity="${Tariffa}" fieldName="d1" sort="${false}"
+					label="d1" />
+
+				<a:column entity="${Tariffa}" fieldName="d2" sort="${false}"
+					label="d2" />
+
+				<a:column entity="${Tariffa}" fieldName="d3" sort="${false}"
+					label="d3" />
+
+				<a:column entity="${Tariffa}" fieldName="d4" sort="${false}"
+					label="d4" />
+
+				<a:column entity="${Tariffa}" fieldName="d5" sort="${false}"
+					label="d5" />
+
+				<a:column entity="${Tariffa}" fieldName="d7" sort="${false}"
+					label="d7" />
+
+				<a:column entity="${Tariffa}" fieldName="d30" sort="${false}"
+					label="d30" />
+
+				<a:column entity="${Tariffa}" fieldName="d1ex" sort="${false}"
+					label="d1ex" />
+
+				<a:column entity="${Tariffa}" fieldName="maxKm" sort="${false}"
+					label="maxKm" />
+
+				<a:columnCommand label="Modifica" action="modTariffa1"
+					backingBean="${tariffeController}" />
+
+			</rich:dataTable>
+			<div height="30" />
+			<rich:dataScroller id="scollerList" for="list" maxPages="10"
+				page="#{tariffeController.scrollerPage}" />
+			<div height="30" />
+			<h:commandLink id="addTariffa" action="#{tariffeController.addTariffa1}"
+				value="Aggiungi tariffa" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

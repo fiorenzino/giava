@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Gestione Clienti</ui:define>
+	<ui:define name="content">
+		<h2>Gestione Cliente</h2>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<h:panelGrid columns="2">
+					<a:field id="Nome" label="Nome(*):" fieldName="nome"
+						entity="#{clientiController.cliente}" required="true" />
+
+					<a:field id="cognome" label="Cognome(*):" fieldName="cognome"
+						entity="#{clientiController.cliente}" required="true" />
+
+					<a:field id="codicefiscale" label="Codice fiscale-P.IVA(*):"
+						fieldName="codicefiscale" entity="#{clientiController.cliente}"
+						required="true" />
+
+					<a:field id="patN" label="Patente n.(*):" fieldName="patente"
+						entity="#{clientiController.cliente}" required="false" />
+
+					<a:field id="rilData" label="Rilasciata in data(*):"
+						fieldName="dataRilasco" entity="#{clientiController.cliente}"
+						required="false" type="calendar" />
+
+					<a:field id="luogoRil" label="Luogo Rilascio(*):"
+						fieldName="luogoRilascio" entity="#{clientiController.cliente}"
+						required="false" type="inputTextArea" />
+
+					<a:field id="rilDa" label="Rilasciata da(*):"
+						fieldName="rilasciataDa" entity="#{clientiController.cliente}"
+						required="false" />
+
+					<a:field id="telefono" label="Telefono(*):" fieldName="telefono"
+						entity="#{clientiController.cliente}" required="false" />
+
+					<a:field id="cellulare" label="Cellulare(*):" fieldName="cellulare"
+						entity="#{clientiController.cliente}" required="false" />
+
+					<a:field id="email" label="Email(*):" fieldName="email"
+						entity="#{clientiController.cliente}" required="false" />
+
+					<a:field id="indirizzo" label="Indirizzo Residenza(*):"
+						fieldName="indirizzo" entity="#{clientiController.cliente}"
+						required="true" type="inputTextArea" />
+
+					<a:field id="nazioneuserHandler" label="Nazione di residenza(*):"
+						type="selOneM" entityId="#{clientiController.cliente}"
+						fieldName="nazione" entityList="#{propertiesHandler}"
+						fieldNameList="nazioniList" required="true" />
+				</h:panelGrid>
+				<a4j:region renderRegionOnly="false">
+					<h:panelGrid columns="2">
+						<a:field id="provinciauserHandler"
+							label="Provincia di residenza(*):" type="selOneAjax"
+							entityId="#{clientiController.cliente}" fieldName="provincia"
+							fieldNameList="#{propertiesHandler.provinceList}"
+							render="cityuserPanel" required="true" />
+					</h:panelGrid>
+				</a4j:region>
+				<a4j:region>
+					<h:panelGrid columns="2" id="cityuserPanel">
+						<a:field id="cityuserHandler" label="Citta di residenza(*):"
+							type="selOneM_Aitems" entityId="#{clientiController.cliente}"
+							fieldName="city" fieldNameList="#{propertiesHandler.comuniItems}"
+							render="cityuserPanel" required="true"
+							rendered="#{clientiController.cliente.provincia != '109'}" />
+
+						<a:field id="city2EE" label="Citta di residenza(*):"
+							fieldName="cityName" entity="#{clientiController.cliente}"
+							required="false"
+							rendered="#{clientiController.cliente.provincia == '109'}" />
+
+						<a:field id="capuserHandler" label="Cap(*):" type="selOneM_items"
+							entityId="#{clientiController.cliente}" fieldName="cap"
+							fieldNameList="#{propertiesHandler.capItems}" required="true"
+							rendered="#{clientiController.cliente.provincia != '109'}" />
+
+						<a:field id="cap2EE" label="Cap(*):" fieldName="cap"
+							entity="#{clientiController.cliente}" required="false"
+							rendered="#{clientiController.cliente.provincia == '109'}" />
+					</h:panelGrid>
+				</a4j:region>
+				<h:panelGrid columns="2">
+					<a:field id="dataNascita" label="Data di Nascita(*):"
+						fieldName="dataNascita" type="calendar"
+						entity="#{clientiController.cliente}" required="true" />
+
+					<a:field id="nazioneNascitauserHandler"
+						label="Nazione di Nascita(*):" type="selOneM"
+						entityId="#{clientiController.cliente}" fieldName="nazioneNascita"
+						entityList="#{propertiesHandler}" fieldNameList="nazioniList"
+						required="true" />
+				</h:panelGrid>
+				<a4j:region renderRegionOnly="false">
+					<h:panelGrid columns="2">
+						<a:field id="provinciaNascitauserHandler"
+							label="Provincia di Nascita(*):" type="selOneAjax"
+							entityId="#{clientiController.cliente}" fieldName="provinciaNascita"
+							fieldNameList="#{propertiesHandler.provinceList}"
+							render="cityNascitaPanel" required="true" />
+					</h:panelGrid>
+				</a4j:region>
+				<a4j:region>
+					<h:panelGrid columns="2" id="cityNascitaPanel">
+						<a:field id="cityNascitauserHandler" label="Citta di Nascita(*):"
+							type="selOneM_Aitems" entityId="#{clientiController.cliente}"
+							fieldName="cityNascita"
+							rendered="#{clientiController.cliente.provinciaNascita != '109'}"
+							fieldNameList="#{propertiesHandler.comuniItems2}" required="true" />
+
+						<a:field id="cityNascita2EE" label="Citta di Nascita(*):"
+							fieldName="cityNascitaName" entity="#{clientiController.cliente}"
+							rendered="#{clientiController.cliente.provinciaNascita == '109'}" />
+					</h:panelGrid>
+				</a4j:region>
+			</rich:panel>
+			<div height="30" />
+			<div><h:commandButton id="submitAdd"
+				action="#{clientiController.addCliente2}" value="Crea Nuovo Cliente"
+				rendered="#{not clientiController.editMode}" /> <h:commandButton
+				id="submitUpdate" action="#{clientiController.modCliente2}"
+				value="Salva Modifiche" rendered="#{clientiController.editMode}" /> <h:commandButton
+				id="delUpdate" action="#{clientiController.delCliente}" value="Elimina"
+				rendered="#{clientiController.editMode}" /></div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

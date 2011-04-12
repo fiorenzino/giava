@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Scheda Scooter</ui:define>
+	<ui:define name="content">
+		<h2>Scheda Tariffa</h2>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<h:panelGrid columns="2" id="editContent">
+					<a:fieldView id="Nome" label="Nome(*):" fieldName="nome"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d1" label="Costo 1gg(*):" fieldName="d1"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d2" label="Costo 2gg(*):" fieldName="d2"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d3" label="Costo 3gg(*):" fieldName="d3"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d4" label="Costo 4gg(*):" fieldName="d4"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d5" label="Costo 5gg(*):" fieldName="d5"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d7" label="Costo 7gg(*):" fieldName="d7"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="d30" label="Costo 30gg(*):" fieldName="d30"
+						entity="#{tariffeController.tariffa}" />
+
+
+					<a:fieldView id="dd1ex" label="Costo 1exgg(*):" fieldName="d1ex"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="maxKm" label="Num. max Km(*):" fieldName="maxKm"
+						entity="#{tariffeController.tariffa}" />
+
+					<a:fieldView id="costoKm" label="Costo Km extra(*):"
+						fieldName="costoKm" entity="#{tariffeController.tariffa}" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

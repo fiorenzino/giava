@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+<facelet-taglib>
+	<namespace>http://topnet.it/facelets</namespace>
+	<tag>
+		<tag-name>field</tag-name>
+		<source>../tags/field.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>fieldView</tag-name>
+		<source>../tags/fieldview.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>column</tag-name>
+		<source>../tags/column.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>columnCommand</tag-name>
+		<source>../tags/columnCommand.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>breadcrumbs</tag-name>
+		<source>../tags/breadcrumbs.xhtml</source>
+	</tag>
+	
+
+	
+
+</facelet-taglib>

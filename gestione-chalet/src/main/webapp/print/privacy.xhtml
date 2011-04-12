@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/print_layout.xhtml">
+	<ui:define name="title">Modulo di Accettazione della Privacy</ui:define>
+	<ui:define name="content">
+
+		<div
+			style="width: 650px; text-align: justify; border: #000 solid 0px;">
+
+
+		<p>Il/la sottoscritto/a #{clientiController.cliente.nomeCognome},
+		nato/a a <h:outputText
+			value=" #{clientiController.cliente.cityNascitaName}" /> (<h:outputText
+			value="#{clientiController.cliente.provinciaNascitaName}" />) <h:outputText
+			value=" #{clientiController.cliente.nazioneNascitaName}" /><h:outputText
+			value=" il " /><h:outputText
+			value="#{clientiController.cliente.dataNascita}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText>, residente a #{clientiController.cliente.cityName}
+		(#{clientiController.cliente.provinciaName}) <h:outputText
+			value=" #{clientiController.cliente.nazioneName}" />, in
+		#{clientiController.cliente.indirizzo}, #{clientiController.cliente.cap}</p>
+		<p>presa visione di:</p>
+		<p>Informativa legge Privacy 196/2003. I suoi dati saranno oggetto
+		di trattamento da parte di Simonelli Moto s.a.s., nella qualità di
+		titolari ai fini della presente proposta e/o per l'invio di
+		informazioni a esso relative, nonchè per aggiornamento su prodotti,
+		iniziative, servizi e ricerche di mercato da parte della titolare, nel
+		rispetto della normativa sulla tutela dei dati personali di cui al
+		D.Lgs 196/2003. Essi potranno altresì essere comunicati ad altre
+		aziende operanti nei settori editoriale, largo consumo e
+		distribuzione, finanziario, assicurativo, motociclistico, dei servizi
+		e ad organizzazioni umanitarie e benefiche le quali potranno
+		adoperarli per le medesime finalità sopra illustrate. Per eventuali
+		rettifiche e/o cancellazioni dei suoi dati personali, o nel caso in
+		cui desiderasse esercitare il diritto di opposizione a ricevere le
+		informazioni di provenienza Simonelli Moto s.a.s. di cui sopra, potrà
+		farlo gratuitamente comunicandolo alla ditta Simonelli Moto s.a.s..</p>
+		<p></p>
+		<p><b>Acconsento che i titolari di Simonelli Moto s.a.s.
+		utilizzino i miei dati per le finalità e secondo le modalità
+		illustrate nell'informativa: [_] si [_] no</b></p>
+		<p></p>
+		<p><b>acconsento alla comunicazione dei miei dati ed al loro
+		successivo uso ai suddetti soggetti terzi secondo quanto specificato
+		nell'informativa: [_] si [_] no</b></p>
+		<!--   
+<div style="page-break-after: always"></div> 
+-->
+		<p></p>
+		<p style="text-align: right;"><b><h:outputText
+			value="San Benedetto del Tronto, li  " /><h:outputText
+			value="#{clientiController.cliente.dataInsert}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p style="text-align: left;"><b>#{clientiController.cliente.nomeCognome}</b>
+		<br />
+		___________________________</p>
+
+		<p></p>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
