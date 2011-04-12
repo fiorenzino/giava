@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Lista Clienti</ui:define>
+	<ui:define name="content">
+		<h2>Lista Clienti</h2>
+		<h:form id="centerForm">
+
+			<h:panelGrid columns="4" width="70%">
+				<h:panelGroup>
+					<h:outputLabel id="nomeLabel1" value="Cerca per cognome:"
+						for="nome1" />
+					<h:inputText id="nome1"
+						value="#{clientiController.ricerca.cognome}" size="15">
+						<a4j:ajax event="change" 
+							render="list,scollerList" action="#{clientiController.aggModel}" />
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputLabel value="Num. Righe:" for="numRighe" />
+					<h:selectOneMenu id="numRighe"
+						value="#{clientiController.rowsPerPage}">
+						<f:selectItems value="#{propertiesHandler.rowItems}" />
+						<a4j:ajax event="change" render="list,scollerList" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+				<f:facet name="footer">
+					<h:outputText value="La tabella sotto si aggiorna automaticamente." />
+				</f:facet>
+			</h:panelGrid>
+			<rich:dataTable id="list" rows="#{clientiController.rowsPerPage}"
+				columnClasses="col" value="#{clientiController.model}" var="cliente">
+				<f:facet name="header">
+					<h:outputText value="Lista Clienti" />
+				</f:facet>
+				<a:column entity="${cliente}" fieldName="cognome" sort="${false}"
+					label="cognome" />
+
+				<a:column entity="${cliente}" fieldName="nome" sort="${false}"
+					label="nome" />
+
+				<a:column entity="${cliente}" fieldName="indirizzo" sort="${false}"
+					label="indirizzo" />
+
+				<a:column campo="Comuni" entity="${cliente.city}" sort="${false}"
+					label="city" type="getArrayValue" />
+
+				<a:column entity="${cliente.provincia}" campo="Province"
+					sort="${false}" label="provincia" type="getArrayValue" />
+
+				<a:columnCommand label="Vedi" action="detailCliente"
+					backingBean="${clientiController}" />
+
+				<a:columnCommand label="Modifica" action="modCliente1"
+					backingBean="${clientiController}" />
+
+			</rich:dataTable>
+			<div height="30" />
+			<rich:dataScroller id="scollerList" for="list" maxPages="10"
+				page="#{clientiController.scrollerPage}" />
+			<div height="30" />
+			<h:commandLink id="addCliente"
+				action="#{clientiController.addCliente1}" value="Aggiungi Cliente" />
+			<h:outputText value=" - " />
+			<h:commandLink id="privacy" action="/pdf/dichiarazione-privacy.pdf"
+				value="Dichiarazione Privacy PDF" target="_blank" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

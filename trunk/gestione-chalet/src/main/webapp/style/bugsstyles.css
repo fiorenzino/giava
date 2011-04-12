@@ -1,0 +1,126 @@
+#wrap {
+	width: 795px;
+	margin-right: auto;
+	margin-left: auto;
+	border: 1px solid #000000;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#header {
+	height: 95px;
+	width: 785px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #e5423d url(../images/fascia-alta_guzzi.jpg) no-repeat
+		center;
+}
+
+#navbar {
+	height: 20px;
+	width: 785px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #DFC8C7;
+	padding-bottom: 4px;
+}
+
+#contentarea {
+	height: auto;
+	width: 755px;
+	background: #EFEFEF;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 0.9em;
+	padding: 5px 20px 20px 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#contentarea h2 {
+	font-weight: bold;
+}
+
+#search {
+	float: right;
+	height: 10px;
+	width: 250px;
+}
+
+#contentright {
+	float: right;
+	width: 200px;
+	height: auto;
+	padding-top: 10px;
+	background: #FFFFE8;
+	padding-bottom: 20px;
+	border: 1px dotted #DFC8C7;
+	margin-left: 10px;
+}
+
+#footer {
+	height: 10px;
+	width: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#footer p {
+	text-align: right;
+	margin-right: 10px;
+	font: 0.8em Geneva, Arial, Helvetica, sans-serif;
+}
+
+#footer p a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+#footer a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#contentright p {
+	font: 0.8em Verdana, Arial, Helvetica, sans-serif;
+}
+
+#contentright a {
+	font: 0.9em Georgia, "Times New Roman", Times, serif;
+	color: #336666;
+	text-decoration: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+#contentright a:hover {
+	background: #EFE2E2;
+}
+
+#navbar {
+	text-align: center;
+	background: #fff;
+}
+
+#navbar a {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-decoration: none;
+	font-size: 0.8em;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #336666;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+#navbar a:hover {
+	background: #EFE2E2;
+	font-size: 0.8em;
+}
+
+.libero {
+	background-color: #ccffcc;
+}
+
+.occupato {
+	background-color: #ffcccc;
+}

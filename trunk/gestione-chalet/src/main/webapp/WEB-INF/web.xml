@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<description>gestione-chalet</description>
+	<display-name>gestione-chalet</display-name>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/facelets/taglib/topnet.taglib.xml;
+			/WEB-INF/facelets/taglib/topnet.functions.taglib.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.fileUpload.createTempFiles</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
+		<param-value>100000</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.skin</param-name>
+		<param-value>blueSky</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bluesky</param-value>
+	</context-param>
+	<filter>
+		<filter-name>RendererFilter</filter-name>
+		<filter-class>by.giava.gestionechalet.controllers.print.RendererFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>RendererFilter</filter-name>
+		<url-pattern>/print/*</url-pattern>
+	</filter-mapping>
+	<!-- JSF -->
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/index.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/index.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/index.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/index.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/index.jsf</location>
+	</error-page>
+	<resource-env-ref>
+		<description>Object factory for the CDI Bean Manager</description>
+		<resource-env-ref-name>BeanManager</resource-env-ref-name>
+		<resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
+	</resource-env-ref>
+</web-app>

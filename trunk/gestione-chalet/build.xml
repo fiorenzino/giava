@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Apr 7, 2010 9:07:56 AM                                                        
+
+     flowercms
+     build file per deploy esploso e aggiornamento risorse web on the fly
+                   
+     pisi79                                                                
+     ====================================================================== -->
+<project name="gestione-chalet" default="default">
+	<description>
+            build file per deploy esploso e aggiornamento risorse web on the fly
+    </description>
+
+	<property file="build.properties" />
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+
+	<target name="default" depends="undeploy,package,deploy" description="build file per deploy esploso e aggiornamento risorse web on the fly">
+
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: package                      
+         - - - - - - - - - - - - - - - - - -->
+
+	<target name="undeploy">
+		<delete file="${deploy.dir}/${ant.project.name}.war" />
+		<delete dir="${deploy.dir}/${ant.project.name}" />
+	</target>
+
+	<target name="package">
+		<exec dir="${basedir}" executable="${mvn.command}">
+			<arg line="-o -Dmaven.skip.test=true package" />
+		</exec>
+	</target>
+
+	<target name="clean">
+		<exec dir="${basedir}" executable="${mvn.command}">
+			<arg line="-o -Dmaven.skip.test=true clean" />
+		</exec>
+	</target>
+
+	<target name="deploy" depends="undeploy">
+		<!--
+		<exec dir="/bin" executable="ln">
+			<arg line="-s ${basedir}/target/${ant.project.name} ${deploy.dir}/${ant.project.name}" />
+		</exec>
+		-->
+		<mkdir dir="${deploy.dir}/${ant.project.name}" />
+		<copy todir="${deploy.dir}/${ant.project.name}" includeemptydirs="true">
+			<fileset dir="${basedir}/target/${ant.project.name}">
+				<include name="**/*" />
+			</fileset>
+			<fileset dir="${basedir}/src/main/webapp">
+				<include name="risorse/*" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="update">
+		<copy overwrite="false" todir="${deploy.dir}/${ant.project.name}" includeemptydirs="true">
+			<fileset dir="${basedir}/src/main/webapp">
+				<include name="risorse/*" />
+				<include name="**/*.xhtml" />
+				<include name="**/*.xml" />
+				<include name="**/*.jsp" />
+				<include name="**/*.css" />
+				<include name="**/*.js" />
+				<include name="**/*.gif" />
+				<include name="**/*.jpg" />
+				<include name="**/*.jpeg" />
+				<include name="**/*.png" />
+				<include name="**/*.html" />
+			</fileset>
+		</copy>
+	</target>
+
+</project>

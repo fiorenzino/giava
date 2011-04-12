@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Gestione Contratto</ui:define>
+	<ui:define name="content">
+		<h2>Gestione Contratto</h2>
+		<h:form id="formCerca">
+			<rich:panel id="cercaScooter">
+				<a:field id="scooter" label="Cilindrata:" type="selOneM"
+					entityId="#{contrattiController}" fieldName="cil"
+					entityList="#{scootersController}" fieldNameList="cilindrateItems" />
+
+				<a:field id="dataInit" label="Data Inizio(*):" fieldName="dataInit"
+					type="dateTime" entity="#{contrattiController.contratto}"
+					required="true" />
+
+				<a:field id="dataEnd" label="Data Riconsegna(*):"
+					fieldName="dataEnd" type="dateTime"
+					entity="#{contrattiController.contratto}" required="true" />
+
+				<a4j:commandButton id="cercaButton"
+					action="#{contrattiController.aggColonne}" value="cerca"
+					render="cercaScooterResult, cercaScooter" immediate="false" />
+
+			</rich:panel>
+		</h:form>
+		<h:form id="form2Cerca">
+			<rich:panel id="cercaScooterResult">
+				<rich:dataTable id="colTable"
+					value="#{contrattiController.searchModel}" var="res">
+					<f:facet name="header">
+						<h:outputText value="Test Prenotazioni"></h:outputText>
+					</f:facet>
+					<c:forEach items="#{contrattiController.colonne}" var="col"
+						begin="#{contrattiController.begin}"
+						end="#{contrattiController.end}" />
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{col}" />
+						</f:facet>
+						<a4j:region>
+							<a4j:commandLink value="#{res[ind].nome}"
+								rendered="#{ind == '0'}"
+								render="cercaScooterResult,cercaScooter,prenotazioneScooter"
+								immediate="true">
+								<a4j:actionparam name="id" value="#{res[ind].id}"
+									assignTo="#{contrattiController.contratto.scooter.id}" />
+								<a4j:actionparam name="kmFatti" value="#{res[ind].kmFatti}"
+									assignTo="#{contrattiController.contratto.kmIniziali}" />
+							</a4j:commandLink>
+						</a4j:region>
+						<h:outputText styleClass="#{res[ind].styleClass}"
+							value="#{res[ind].symbol}" rendered="#{ind != '0'}" />
+					</rich:column>
+					</c:forEach>
+				</rich:dataTable>
+
+			</rich:panel>
+		</h:form>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<a4j:region id="r1toa2">
+					<rich:messages />
+					<h:panelGrid columns="2">
+						<a:field id="cliente" label="Cliente(*):" type="selOneM"
+							entityId="#{contrattiController.contratto.cliente}"
+							fieldName="id" entityList="#{clientiController}"
+							fieldNameList="clientiItems" required="true" />
+
+						<a:field id="scooter" label="Scooter(*):" type="selOneM"
+							entityId="#{contrattiController.contratto.scooter}"
+							fieldName="id" entityList="#{scootersController}"
+							fieldNameList="scootersItems" required="true" />
+
+						<a:field id="kmIniziali" label="KM Iniziali(*):"
+							fieldName="kmIniziali" entity="#{contrattiController.contratto}"
+							required="true" />
+						<a:field id="note" label="Note:" fieldName="note"
+							entity="#{contrattiController.contratto}" required="false"
+							type="inputTextArea" />
+					</h:panelGrid>
+				</a4j:region>
+				<h:panelGrid columns="2">
+					<a4j:commandButton id="calculateSum"
+						action="#{contrattiController.calcolaSomma}"
+						value="calcola prezzo" render="sommaPanel" immediate="false" />
+				</h:panelGrid>
+			</rich:panel>
+
+			<rich:panel id="sommaPanel">
+				<f:facet name="header">
+					<h:outputText value="Somma delle voci" />
+				</f:facet>
+				<h:panelGrid columns="2">
+					<a:fieldView id="numDays" label="Numero di giorni:"
+						fieldName="numDays" entity="#{contrattiController}" />
+					<h:outputText value=" " />
+
+					<a:fieldView id="importoIniziale" label="Importo Iniziale(*):"
+						fieldName="importoIniziale"
+						entity="#{contrattiController.contratto}" />
+					<h:outputText value=" " />
+
+					<a:field id="sconto" label="Sconto:" fieldName="sconto"
+						entity="#{contrattiController.contratto}" required="false" />
+
+					<a:field id="cascoExtra" label="Secondo Casco:"
+						fieldName="cascoExtra" entity="#{contrattiController.contratto}"
+						required="false" />
+
+					<a:field id="importoSottoCasco" label="Sotto Casco:"
+						fieldName="importoSottoCasco"
+						entity="#{contrattiController.contratto}" required="false" />
+
+					<a:field id="importoCaparra" label="Importo Caparra:"
+						fieldName="importoCaparra"
+						entity="#{contrattiController.contratto}" required="false" />
+
+					<a:fieldView id="totale" label="Totale:" fieldName="totaleParziale"
+						entity="#{contrattiController.contratto}" />
+					<h:outputText value=" " />
+
+					<a4j:commandButton id="aggiorna"
+						action="#{contrattiController.calcolaSomma}"
+						value="aggiorna totale" render="sommaPanel" immediate="false" />
+				</h:panelGrid>
+			</rich:panel>
+
+			<div height="30" />
+			<div>
+				<h:commandButton id="submitAdd"
+					action="#{contrattiController.addContratto2}"
+					value="Crea Nuovo Contratto"
+					rendered="#{not contrattiController.editMode}" />
+				<h:commandButton id="exit" action="/contratti/" value="Esci"
+					immediate="true" />
+				<h:commandButton id="delUpdate"
+					action="#{contrattiController.delContratto}" value="Elimina"
+					rendered="#{contrattiController.editMode}" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

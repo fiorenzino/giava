@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/print_layout.xhtml">
+	<ui:define name="title">Contratto di Locazione</ui:define>
+	<ui:define name="content">
+
+		<div
+			style="width: 650px; text-align: justify; border: #000 solid 0px;">
+
+
+		<p></p>
+		<p></p>
+		<p>Tra la ditta <b>Simonelli Moto s.a.s.</b> ed il/la sig./sig.ra
+		<b>#{contrattiController.contratto.cliente.nomeCognome}</b>, nato il <b><h:outputText
+			value="#{clientiController.cliente.dataNascita}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b> a <b>#{contrattiController.contratto.cliente.cityNascitaName}
+		(#{contrattiController.contratto.cliente.provinciaNascitaName})</b>,
+		residente in via <b>#{contrattiController.contratto.cliente.indirizzo}</b>,
+		#{contrattiController.contratto.cliente.cap}
+		#{contrattiController.contratto.cliente.cityName}
+		(#{contrattiController.contratto.cliente.provinciaName}), cod. fiscale <b>#{contrattiController.contratto.cliente.codicefiscale}</b>
+		ed identificato con patente n. <b>#{contrattiController.contratto.cliente.patente}</b>
+		emessa da #{contrattiController.contratto.cliente.rilasciataDa} di
+		#{contrattiController.contratto.cliente.luogoRilascio} in data <h:outputText
+			value=" " /><h:outputText
+			value="#{contrattiController.contratto.cliente.dataRilasco}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText>, avente numero di telefono:
+		#{contrattiController.contratto.cliente.telefono} e cellulare:
+		#{contrattiController.contratto.cliente.cellulare},</p>
+		<p></p>
+		<p><b>si accetta e si stipula quanto segue:</b></p>
+		<ul>
+			<li>la ditta <b>Simonelli Moto s.a.s.</b> cede in locazione a <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+			lo scooter <b>#{contrattiController.contratto.scooter.marcaModello}</b>
+			avente targa <b>#{contrattiController.contratto.scooter.targa}</b>
+			intestato a Simonelli Moto s.a.s.;
+			<p></p>
+			</li>
+			<li>il/la sig./sig.ra
+			#{contrattiController.contratto.cliente.nomeCognome} prende in locazione
+			lo scooter <b>#{contrattiController.contratto.scooter.marca}
+			#{contrattiController.contratto.scooter.modello}</b> avente targa <b>#{contrattiController.contratto.scooter.targa}</b>,
+			dal giorno/ore: <b><h:outputText value=" " /><h:outputText
+				value="#{contrattiController.contratto.dataInit}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, al giorno/ore: <b><h:outputText value=" " /><h:outputText
+				value="#{contrattiController.contratto.dataEnd}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, accettando tutte le clausole del presente contratto, nessuna
+			esclusa od eccettuata e dichiarando espressamente di ritirare lo
+			scooter in ottime condizioni di uso e manutenzione, sia di
+			carrozzeria che di meccanica, con tutte le parti in perfetto ordine,
+			ed in tale stato si impegna ad osservare la diligenza del buon padre
+			di famiglia, nell'uso della cosa e nei limiti stabiliti dal presente
+			contratto ed a restituire lo scooter alla scadenza del contratto;
+			<p></p>
+			</li>
+			<li>lo scooter deve essere restituito alla predetta scadenza
+			nello stesso stato in cui viene consegnato al locatario;
+			<p></p>
+			</li>
+			<li>lo scooter verrà restituito entro il giorno/ore<b><h:outputText
+				value=" " /> <h:outputText
+				value="#{contrattiController.contratto.dataEnd}">
+				<f:convertDateTime locale="IT" type="date"
+					pattern="dd-MM-yyyy kk:mm" />
+			</h:outputText></b>, presso Simonelli Moto s.a.s. e dovrà essere riconsegnato con il
+			pieno del carburante o con il livello con cui lo stesso viene
+			consegnato al locatario; diversamente verrà addebitato al locatario
+			un supplemento di euro 10 per il servizio di rifornimento oltre al
+			carburante mancante;
+			<p></p>
+			</li>
+			<li>è prevista una tolleranza massima di 59 minuti nella
+			riconsegna dello scooter, oltre la quale verrà addebitata una
+			giornata di noleggio extra; ogni giornata di ritardo non
+			preventivamente accordata con la ditta Simonelli moto SAS, darà luogo
+			ad una penale del 30% oltre al pagamento della tariffa dovuta per
+			ogni giorno di ritardo;
+			<p></p>
+			</li>
+			<li>il/la sig./sign.ra
+			#{contrattiController.contratto.cliente.nomeCognome} lascia la somma di
+			euro #{contrattiController.contratto.totale}, a titolo di saldo per
+			l'importo dovuto, così ripartita:
+			<table>
+				<tr>
+					<td style="width: 50px;"></td>
+					<td>Importo Iniziale:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoIniziale}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Eventuale sconto:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.sconto}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Secondo Casco:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.cascoExtra}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Sotto Casco:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoSottoCasco}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Importo Caparra:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.importoCaparra}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Totale:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.totale}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+			</table>
+			<p></p>
+			</li>
+			<li>le tariffe e condizioni della locazione del mezzo:
+			<table>
+				<tr>
+					<td style="width: 50px;"></td>
+					<td>1 giorno:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d1}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>2 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d2}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>3 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d3}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>4 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d4}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>5 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d5}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>7 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d7}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>30 giorni:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d30}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>1 giorno extra:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.d1ex}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>numero max Km (al gg):</td>
+					<td>#{contrattiController.contratto.scooter.tariffa.maxKm}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>costo per km extra:</td>
+					<td>euro <h:outputText value=" " /><h:outputText
+						value="#{contrattiController.contratto.scooter.tariffa.costoKm}">
+						<f:converter converterId="CustomFloatConverter" />
+					</h:outputText></td>
+				</tr>
+			</table>
+
+			<p></p>
+			</li>
+			<li>è stabilito il divieto assoluto di sublocazione;
+			<p></p>
+			</li>
+			<li>lo scooter può essere controllato dal locatore ogni volta
+			che lo ritiene opportuno;
+			<p></p>
+			</li>
+			<li>il locatario dichiara di essere perfettamente abilitato alla
+			conduzione dello scoooter che gli verrà consegnato, come da patente
+			n. #{contrattiController.contratto.cliente.patente} che esibisce al
+			momento della stipula del presente contratto e che dichiara essere in
+			perfetto corso di validità, non essendo egli sottoposto a restrizione
+			di legge o provvedimenti dell'autorità amministrativa o giudiziaria;
+			<p></p>
+			</li>
+			<li>eventuali multe, sanzioni pecuniarie amministrative
+			derivanti dalla circolazione dello scooter, addebitabili al
+			locatario, faranno carico a quest'ultimo che fin d'ora si impegna a
+			pagare;
+			<p></p>
+			</li>
+			<li>per quanto qui non espressamente previsto si fa rinvio agli
+			art. 1571 e seguenti del codice civile;
+			<p></p>
+			</li>
+			<li>per ogni eventuale controversia, che dovesse insorgere tra
+			le parti è esclusivamente competente il foro di Ascoli Piceno,
+			sezione distaccata di San Benedetto del Tronto.
+			<p></p>
+			</li>
+		</ul>
+		<p></p>
+		<!--   
+<div style="page-break-after: always"></div> 
+-->
+		<p></p>
+		<p style="text-align: right;"><b><h:outputText
+			value="San Benedetto del Tronto, li  " /><h:outputText
+			value="#{contrattiController.contratto.dataStipula}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" style="width: 650px;">
+			<h:panelGroup style="width: 325px; text-align: left;">
+			il locatore <b>Simonelli Moto s.a.s.</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+			<h:panelGroup style="width: 325px; text-align: right;">
+			il locatario <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+		</h:panelGrid>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p><b>Per espressa approvazione delle clausole 1, 2, 3, 4, 5,
+		6, 7, 8, 9, 10, 11, 12, 13 </b></p>
+		<p></p>
+		<p style="text-align: right;"><b><h:outputText
+			value="San Benedetto del Tronto, li  " /><h:outputText
+			value="#{contrattiController.contratto.dataStipula}">
+			<f:convertDateTime locale="IT" type="date" pattern="dd-MM-yyyy" />
+		</h:outputText></b></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" style="width: 650px;">
+			<h:panelGroup style="width: 325px; text-align: left;">
+			il locatore <b>Simonelli Moto s.a.s.</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+			<h:panelGroup style="width: 325px; text-align: right;">
+			il locatario <b>#{contrattiController.contratto.cliente.nomeCognome}</b>
+				<br />
+			___________________________
+			</h:panelGroup>
+		</h:panelGrid></div>
+	</ui:define>
+</ui:composition>
+</html>

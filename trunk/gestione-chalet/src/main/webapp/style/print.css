@@ -1,0 +1,57 @@
+@page {
+	size: A4 portrait;
+	margin-top: 3cm;
+	margin-bottom: 3cm;
+	margin-left: 1.5cm;
+	margin-right: 2cm; 
+	@top-center {content: element(header)}
+	@bottom-center {content: element(footer)}
+
+}
+body {
+	font-size: 14px;
+	font-family: arial;
+	/*width: 800px;*/
+}
+
+li {
+	list-style-type: decimal;
+}
+
+h2 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+a,a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+p {
+	margin: 15px;
+}
+
+#header {
+	display: block;
+	text-align: center; border-bottom : solid 0.01mm #000;
+	padding-bottom: 0.5cm;
+	position: running(header);
+	border-bottom: solid 0.01mm #000;
+}
+
+#footer {
+	display: block;
+	border-top: solid 0.01mm #000;
+	padding-top: 0.5cm;
+	padding-bottom: 0.5cm;
+	position: running(footer);
+}
+
+#pagenumber:before {
+content: counter(page); 
+}
+
+#pagecount:before {
+content: counter(pages);  
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Lista Scooter</ui:define>
+	<ui:define name="content">
+		<h2>Lista Scooter</h2>
+		<h:form id="centerForm">
+
+			<h:panelGrid columns="4" width="70%">
+				<h:panelGroup>
+					<h:outputLabel id="marcaLabel" value="Cerca per marca:" for="marca" />
+					<h:inputText id="marca" value="#{scootersController.ricerca.marca}"
+						size="15">
+						<a4j:ajax event="change" 
+							render="list,scollerList" action="#{scootersController.aggModel}" />
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputLabel id="modelloLabel" value="Modello:" for="modello" />
+					<h:inputText id="modello"
+						value="#{scootersController.ricerca.modello}" size="15">
+						<a4j:ajax event="change" 
+							render="list,scollerList" action="#{scootersController.aggModel}" />
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputLabel value="Num. Righe:" for="numRighe" />
+					<h:selectOneMenu id="numRighe"
+						value="#{scootersController.rowsPerPage}">
+						<f:selectItems value="#{propertiesHandler.rowItems}" />
+						<a4j:ajax event="change" render="list,scollerList" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+				<f:facet name="footer">
+					<h:outputText value="La tabella sotto si aggiorna automaticamente." />
+				</f:facet>
+			</h:panelGrid>
+			<rich:dataTable id="list" rows="#{scootersController.rowsPerPage}"
+				columnClasses="col" value="#{scootersController.model}" var="scooter">
+				<f:facet name="header">
+					<h:outputText value="Lista Scooter" />
+				</f:facet>
+
+				<a:column entity="${scooter}" fieldName="nome" sort="${false}"
+					label="nome" />
+
+				<a:column entity="${scooter}" fieldName="marca" sort="${false}"
+					label="marca" />
+
+				<a:column entity="${scooter}" fieldName="modello" sort="${false}"
+					label="modello" />
+
+				<a:column entity="${scooter}" fieldName="cilindrata" sort="${false}"
+					label="cilindrata" />
+
+				<a:column entity="${scooter}" fieldName="targa" sort="${false}"
+					label="targa" />
+
+				<a:column entity="${scooter}" fieldName="scadenzaAssicurazione"
+					sort="${false}" label="Assicurazione" styleClass="${scooter.scadenza}"/>
+					
+				<a:column entity="${scooter}" fieldName="kmFatti"
+					sort="${false}" label="KM_Fatti" styleClass="${scooter.scadenza}"/>
+
+				<a:columnCommand label="Vedi" action="detailScooter"
+					backingBean="${scootersController}" />
+
+				<a:columnCommand label="Modifica" action="modScooter1"
+					backingBean="${scootersController}" />
+
+			</rich:dataTable>
+			<div height="30" />
+			<rich:dataScroller id="scollerList" for="list" maxPages="10"
+				page="#{scootersController.scrollerPage}" />
+			<div height="30" />
+			<h:commandLink id="addScooter"
+				action="#{scootersController.addScooter1}" value="Aggiungi scooter" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

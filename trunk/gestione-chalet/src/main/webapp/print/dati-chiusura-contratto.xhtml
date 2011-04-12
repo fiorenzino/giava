@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/print_layout.xhtml">
+	<ui:define name="title">Dati Contratto Chiuso</ui:define>
+	<ui:define name="content">
+
+		<div
+			style="width: 650px; text-align: justify; border: #000 solid 0px;">
+		<p></p>
+		<p></p>
+		<h:panelGrid columns="2" id="editContent" columnClasses="150,100">
+
+			<h:outputLabel id="V1Label" value="  " for="V1" />
+			<h:outputText id="V1" value="    " />
+
+			<h:outputLabel id="OperatoreLabel" value="Operatore:" for="Operatore" />
+			<h:outputText id="Operatore" value="_____________________________" />
+
+			<h:outputLabel id="VLabel" value="  " for="V" />
+			<h:outputText id="V" value="    " />
+
+			<a:fieldView id="Cliente" label="Cliente:"
+				entity="#{contrattiController.contratto.cliente}"
+				fieldName="nomeCognome" />
+
+			<a:fieldView id="scooter" label="Scooter:"
+				entity="#{contrattiController.contratto.scooter}"
+				fieldName="marcaModello" />
+
+			<a:fieldView id="dataInit" label="Data Inizio Noleggio:"
+				fieldName="dataInit" type="outputDate"
+				entity="#{contrattiController.contratto}" />
+
+			<h:outputLabel id="DataRiconsegnaLabel"
+				value="Data Riconsegna Effettuata:" for="DataRiconsegna" />
+			<h:outputText id="DataRiconsegna"
+				value="_____________________________" />
+
+			<a:fieldView id="kmIniziali" label="KM Iniziali:"
+				fieldName="kmIniziali" entity="#{contrattiController.contratto}" />
+
+			<h:outputLabel id="KMFinaliLabel" value="KM Finali:" for="KMFinali" />
+			<h:outputText id="KMFinali" value="_____________________________" />
+
+
+			<h:outputLabel id="StatoSerbatoioLabel"
+				value="Stato Serbatoio Benzina:" for="StatoSerbatoio" />
+			<h:outputText id="StatoSerbatoio"
+				value="_____________________________" />
+
+
+			<h:outputLabel id="importoDanniLabel" value="Danni Rilevati:"
+				for="importoDanni" />
+			<h:panelGroup>
+				<h:outputText id="importoDanni"
+					value="_____________________________" />
+				<br />
+				<h:outputText id="importoDanni2"
+					value="_____________________________" />
+				<br />
+				<h:outputText id="importoDanni3"
+					value="_____________________________" />
+			</h:panelGroup>
+
+			<h:outputLabel id="noteLabel" value="Note:" for="note" />
+			<h:panelGroup>
+				<h:outputText id="note" value="_____________________________" />
+				<br />
+				<h:outputText id="note2" value="_____________________________" />
+				<br />
+				<h:outputText id="note3" value="_____________________________" />
+			</h:panelGroup>
+
+
+		</h:panelGrid></div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://topnet.it/facelets"
+	xmlns:fn="http://topnet.it/functions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/layout/t_single.xhtml">
+	<ui:define name="title">Scheda Cliente</ui:define>
+	<ui:define name="content">
+		<h2>Scheda Cliente</h2>
+		<h:form id="form">
+			<rich:panel id="prenotazioneScooter">
+				<h:panelGrid columns="2" id="editContent">
+					<a:fieldView label="Nome:" fieldName="nome" id="nome"
+						entity="#{clientiController.cliente}" />
+
+					<a:fieldView label="Cognome:" fieldName="cognome" id="cognome"
+						entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="codicefiscale" label="Codice fiscale-P.IVA(*):"
+						fieldName="codicefiscale" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="patente" label="Patente:" fieldName="patente"
+						entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="rilasciataDa" label="Rilasciata Da:"
+						fieldName="rilasciataDa" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="luogoRilascio" label="Luogo Rilascio:"
+						fieldName="luogoRilascio" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="dataRilasco" label="Data Rilasco:"
+						fieldName="dataRilasco" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="indirizzo" label="Indirizzo Residenza:"
+						fieldName="indirizzo" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="city" label="Comune di residenza:" campo="Comuni"
+						entity="#{clientiController.cliente.city}" type="getArrayValue"
+						rendered="#{clientiController.cliente.provincia != 109}" />
+
+					<a:fieldView id="city2" label="Comune di residenza:"
+						entity="#{clientiController.cliente}" fieldName="cityName"
+						rendered="#{clientiController.cliente.provincia == 109}" />
+
+					<a:fieldView id="province" label="Provincia di residenza:"
+						campo="Province" entity="#{clientiController.cliente.provincia}"
+						type="getArrayValue" />
+
+					<a:fieldView id="cap" label="Cap:" fieldName="cap"
+						entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="nation" label="Nazione di residenza:"
+						campo="Nazioni" entity="#{clientiController.cliente.nazione}"
+						type="getArrayValue" />
+
+					<a:fieldView label="Data Nascita" fieldName="dataNascita"
+						id="datanascita" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="birthCity" label="Comune di nascita:"
+						campo="Comuni" entity="#{clientiController.cliente.cityNascita}"
+						type="getArrayValue"
+						rendered="#{clientiController.cliente.provinciaNascita != 109}" />
+
+					<a:fieldView id="birthCity2" label="Comune di nascita:"
+						fieldName="cityNascitaName" entity="#{clientiController.cliente}"
+						rendered="#{clientiController.cliente.provinciaNascita == 109}" />
+
+					<a:fieldView id="birthProvince" label="Provincia di nascita:"
+						campo="Province"
+						entity="#{clientiController.cliente.provinciaNascita}"
+						type="getArrayValue" />
+
+					<a:fieldView id="birthNation" label="Nazione di nascita:"
+						campo="Nazioni" entity="#{clientiController.cliente.nazioneNascita}"
+						type="getArrayValue" />
+
+					<a:fieldView id="telefono" label="Telefono(*):"
+						fieldName="telefono" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="cellulare" label="Cellulare(*):"
+						fieldName="cellulare" entity="#{clientiController.cliente}" />
+
+					<a:fieldView id="email" label="Email(*):" fieldName="email"
+						entity="#{clientiController.cliente}" />
+
+
+					<h:commandLink id="stampaPrivacy" action="/print/privacy.xhtml"
+						value="Stampa Privacy" target="_blank" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
