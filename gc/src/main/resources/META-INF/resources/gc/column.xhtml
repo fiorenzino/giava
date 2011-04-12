@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="id" reqired="true" />
+	<composite:attribute name="label" reqired="true" />
+	<composite:attribute name="maxlength" default="100" />
+	<composite:attribute name="size" default="30" />
+	<composite:attribute name="rows" default="3" />
+	<composite:attribute name="cols" default="40" />
+	<composite:attribute name="inputType" default="inputText" />
+	<composite:attribute name="entity" />
+</composite:interface>
+
+<composite:implementation>
+
+	<h:outputLabel id="${cc.attrs.id}LabelT" value="${cc.attrs.label}"
+		for="#{cc.attrs.id}T" rendered="#{cc.attrs.inputType eq 'inputText'}" />
+	<h:inputText id="#{cc.attrs.id}T" value="#{cc.attrs.entity}"
+		size="#{cc.attrs.size}" maxlength="#{cc.attrs.maxlength}"
+		rendered="#{cc.attrs.inputType eq 'inputText'}">
+		<composite:insertChildren />
+	</h:inputText>
+
+
+	<h:inputHidden id="#{cc.attrs.id}H" value="#{cc.attrs.entity}"
+		rendered="#{cc.attrs.inputType eq 'hidden'}" />
+
+	<h:outputLabel id="${cc.attrs.id}LabelP" value="${cc.attrs.label}"
+		for="#{cc.attrs.id}P" rendered="#{cc.attrs.inputType eq 'password'}" />
+	<h:inputSecret id="#{cc.attrs.id}P" value="#{cc.attrs.entity}"
+		reqired="${cc.attrs.reqired}" size="#{cc.attrs.size}"
+		maxlength="#{cc.attrs.maxlength}"
+		rendered="#{cc.attrs.inputType eq 'password'}">
+		<composite:insertChildren />
+	</h:inputSecret>
+
+	<h:outputLabel id="${cc.attrs.id}LabelTA" value="${cc.attrs.label}"
+		for="#{cc.attrs.id}TA"
+		rendered="#{cc.attrs.inputType eq 'textArea'}" />
+	<h:inputTextarea id="#{cc.attrs.id}TA" value="#{cc.attrs.entity}"
+		rows="#{cc.attrs.rows}" cols="#{cc.attrs.cols}"
+		reqired="${cc.attrs.reqired}" readonly="#{cc.attrs.readonly}"
+		escape="false" rendered="#{cc.attrs.inputType eq 'textArea'}">
+		<composite:insertChildren />
+	</h:inputTextarea>
+
+	<h:outputLabel id="${cc.attrs.id}LabelCH" value="${cc.attrs.label}"
+		for="#{cc.attrs.id}TA" rendered="#{cc.attrs.inputType eq 'checkbox'}" />
+	<h:selectBooleanCheckbox id="#{cc.attrs.id}CH"
+		title="${cc.attrs.label}" value="#{cc.attrs.entity}"
+		readonly="#{cc.attrs.readonly}"
+		rendered="#{cc.attrs.inputType eq 'checkbox'}">
+		<composite:insertChildren />
+	</h:selectBooleanCheckbox>
+
+
+</composite:implementation>
+</html>
