@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="id" reqired="true" />
+	<composite:attribute name="label" reqired="true" />
+	<composite:attribute name="maxlength" default="100" />
+	<composite:attribute name="size" default="30" />
+	<composite:attribute name="rows" default="3" />
+	<composite:attribute name="cols" default="40" />
+	<composite:attribute name="inputType" default="inputText" />
+	<composite:attribute name="entity" />
+</composite:interface>
+
+<composite:implementation>
+
+	<h:outputLabel id="${cc.attrs.id}LabelT" value="${cc.attrs.label}"
+		for="#{cc.attrs.id}T" rendered="#{cc.attrs.inputType eq 'inputText'}" />
+	<h:inputText id="#{cc.attrs.id}T" value="#{cc.attrs.entity}"
+		size="#{cc.attrs.size}" maxlength="#{cc.attrs.maxlength}"
+		rendered="#{cc.attrs.inputType eq 'inputText'}">
+		<composite:insertChildren />
+	</h:inputText>
+
+
+	<c:when test='${type == "selOneM"}'>
+					<h:outputLabel value="${label}" for="${id}" />
+					<h:selectOneMenu id="${id}" value="#{entityId[fieldName]}"
+						readonly="#{readonly}">
+						<f:selectItems value="#{entityList[fieldNameList]}" />
+					</h:selectOneMenu>
+				</c:when>
+				<c:when test='${type == "selOneM_items"}'>
+					<h:outputLabel value="${label}" for="${id}" />
+					<h:selectOneMenu id="${id}" value="#{entityId[fieldName]}"
+						readonly="#{readonly}">
+						<f:selectItems value="#{fieldNameList}" />
+					</h:selectOneMenu>
+				</c:when>
+				<c:when test='${type == "selOneM_Aitems"}'>
+					<h:panelGroup>
+						<h:outputLabel value="${label}" for="${id}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:selectOneMenu id="${id}" value="#{entityId[fieldName]}"
+							readonly="#{readonly}">
+							<f:selectItems value="#{fieldNameList}" />
+							<a4j:ajax event="change" render="#{render}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</c:when>
+				<c:when test='${type == "selOneAjax"}'>
+					<h:outputLabel value="${label}" for="${id}" />
+					<h:selectOneMenu id="${id}" value="#{entityId[fieldName]}"
+						readonly="#{readonly}">
+						<f:selectItems value="#{fieldNameList}" />
+						<a4j:ajax event="change" render="#{render}" />
+					</h:selectOneMenu>
+				</c:when>
+
+
+</composite:implementation>
+</html>

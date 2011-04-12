@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib id="rich" version="2.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
+	<namespace>http://giava.by/gc</namespace>
+	<composite-library-name>gc</composite-library-name>
+	<tag>
+		<tag-name>debug</tag-name>
+	</tag>
+	<tag>
+		<tag-name>input</tag-name>
+		<attribute>
+			<description>The component identifier for this component</description>
+			<display-name>id</display-name>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The label for component</description>
+			<display-name>label</display-name>
+			<name>label</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The entity for component</description>
+			<display-name>entity</display-name>
+			<name>entity</name>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>The maxlength for input component</description>
+			<display-name>maxlength</display-name>
+			<name>maxlength</name>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>The size for component</description>
+			<display-name>size</display-name>
+			<name>size</name>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>The type for component</description>
+			<display-name>inputType</display-name>
+			<name>inputType</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The cols for textarea component</description>
+			<display-name>cols</display-name>
+			<name>cols</name>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>The rows for textarea component</description>
+			<display-name>rows</display-name>
+			<name>rows</name>
+			<type>int</type>
+		</attribute>
+
+
+	</tag>
+</facelet-taglib>
