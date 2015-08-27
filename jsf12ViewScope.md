@@ -1,0 +1,1 @@
+http://mkblog.exadel.com/2009/07/view-scope-in-richfaces/
